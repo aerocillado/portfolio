@@ -20,6 +20,11 @@
             --sun: #ffc93c;            /* sunny yellow */
             --sun-deep: #f5a623;
             --pop: #ef5350;            /* toy red */
+            --toy-green: #58b368;
+            --toy-orange: #f4772e;
+            --toy-purple: #9b6dd7;
+            --toy-teal: #2fb5b0;
+            --toy-blue: #3d9be9;
             --mint: #ecf6ff;
             --card-border: 3px solid var(--ink);
             --card-shadow: 0 8px 0 rgba(28, 61, 110, 0.22);
@@ -207,36 +212,53 @@
         .info-card h4 { font-size: 0.95rem; color: var(--ink); font-weight: 600; }
         .info-card p { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); line-height: 1.5; }
 
-        /* Experience timeline */
-        .experience-section { background: var(--cloud); border: var(--card-border); border-radius: 26px; padding: 40px; box-shadow: var(--card-shadow); margin: 0 24px; overflow: visible; }
-        .timeline-wrapper { position: relative; padding: 60px 0 30px; }
-        .timeline-line { position: absolute; top: 50%; left: 30px; right: 30px; height: 0; border-top: 3px dashed var(--sky-mid); transform: translateY(-50%); }
-        .timeline-items { display: flex; justify-content: space-between; position: relative; z-index: 2; padding: 0 10px; }
-        .timeline-item { display: flex; flex-direction: column; align-items: center; position: relative; flex: 1; max-width: 180px; }
-        .timeline-node {
-            width: 54px; height: 54px; background: var(--cloud); border: 3px solid var(--ink); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; transition: var(--transition-spring);
-            position: relative; box-shadow: 0 5px 0 rgba(28,61,110,0.25);
+        /* Experience — board-game journey */
+        .experience-section { background: var(--cloud); border: var(--card-border); border-radius: 26px; padding: 44px 40px; box-shadow: var(--card-shadow); margin: 0 24px; overflow: visible; }
+        .journey { position: relative; max-width: 760px; margin: 0 auto; }
+        .journey::before {
+            content: ''; position: absolute; top: 28px; bottom: 28px; left: 31px; width: 0;
+            border-left: 4px dashed var(--sky-mid); border-radius: 2px;
         }
-        .timeline-node svg { width: 22px; height: 22px; color: var(--ink); transition: var(--transition-fast); stroke-width: 1.8; }
-        .timeline-item:hover .timeline-node { transform: scale(1.12) translateY(-5px) rotate(-6deg); background: var(--sun); box-shadow: 0 8px 0 rgba(28,61,110,0.25); }
-        .timeline-label { text-align: center; margin-top: 14px; }
-        .timeline-year { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--pop); display: block; margin-bottom: 2px; }
-        .timeline-company { font-size: 0.72rem; font-weight: 800; color: var(--text-muted); max-width: 110px; line-height: 1.3; }
-        .timeline-popup {
-            position: absolute; bottom: calc(100% + 18px); left: 50%; transform: translateX(-50%) translateY(8px);
-            width: 280px; background: var(--cloud); border: 3px solid var(--ink); border-radius: 16px; padding: 18px;
-            box-shadow: 0 8px 0 rgba(28,61,110,0.25); opacity: 0; visibility: hidden; transition: var(--transition-smooth); z-index: 100;
+        .journey-stop { position: relative; display: flex; gap: 22px; align-items: flex-start; padding: 18px 0; }
+        .stop-node {
+            position: relative; z-index: 2; flex-shrink: 0;
+            width: 64px; height: 64px; border-radius: 50%;
+            border: 3px solid var(--ink); display: flex; align-items: center; justify-content: center;
+            color: #fff; box-shadow: 0 6px 0 rgba(28,61,110,0.28), inset 0 -6px 0 rgba(0,0,0,0.12);
+            transition: var(--transition-spring);
         }
-        .timeline-popup::after { content: ''; position: absolute; bottom: -9px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 14px; height: 14px; background: var(--cloud); border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink); }
-        .timeline-item:hover .timeline-popup { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .timeline-popup h4 { font-size: 0.95rem; color: var(--ink); margin-bottom: 2px; font-weight: 600; }
-        .timeline-popup .popup-role { font-size: 0.75rem; color: var(--pop); font-weight: 900; margin-bottom: 6px; }
-        .timeline-popup .popup-location { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-bottom: 10px; }
-        .timeline-popup .popup-location svg { width: 12px; height: 12px; stroke-width: 2; }
-        .timeline-popup ul { list-style: none; padding: 0; margin: 0; }
-        .timeline-popup li { font-size: 0.72rem; font-weight: 600; color: var(--text-secondary); padding-left: 14px; position: relative; margin-bottom: 4px; line-height: 1.4; }
-        .timeline-popup li::before { content: ''; position: absolute; left: 0; top: 5px; width: 6px; height: 6px; background: var(--sun); border: 1px solid var(--ink); border-radius: 50%; }
+        .stop-node svg { width: 28px; height: 28px; stroke-width: 2; filter: drop-shadow(0 2px 0 rgba(0,0,0,0.15)); }
+        .journey-stop:hover .stop-node { transform: scale(1.12) rotate(-8deg); box-shadow: 0 9px 0 rgba(28,61,110,0.28), inset 0 -6px 0 rgba(0,0,0,0.12); }
+        .node-green  { background: var(--toy-green); }
+        .node-teal   { background: var(--toy-teal); }
+        .node-purple { background: var(--toy-purple); }
+        .node-blue   { background: var(--toy-blue); }
+        .node-orange { background: var(--toy-orange); }
+        .node-star   { background: var(--sun); color: var(--ink); }
+        .stop-card {
+            flex: 1; background: var(--mint); border: 2.5px solid var(--ink); border-radius: 18px;
+            padding: 18px 22px; box-shadow: 0 5px 0 rgba(28,61,110,0.18); transition: var(--transition-spring);
+        }
+        .journey-stop:nth-child(odd) .stop-card { transform: rotate(-0.4deg); }
+        .journey-stop:nth-child(even) .stop-card { transform: rotate(0.4deg); }
+        .journey-stop:hover .stop-card { transform: rotate(0deg) translateY(-3px); box-shadow: 0 8px 0 rgba(28,61,110,0.2); background: #fff; }
+        .stop-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2px; }
+        .stop-top h4 { font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+        .stop-date {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; font-weight: 700; color: var(--ink);
+            background: var(--sun); border: 2px solid var(--ink); border-radius: 999px; padding: 3px 11px;
+            box-shadow: 0 3px 0 rgba(28,61,110,0.2); white-space: nowrap;
+        }
+        .stop-role { font-size: 0.78rem; font-weight: 900; color: var(--pop); margin-bottom: 3px; }
+        .stop-place { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-bottom: 10px; }
+        .stop-place svg { width: 12px; height: 12px; stroke-width: 2; }
+        .stop-card ul { list-style: none; padding: 0; margin: 0; }
+        .stop-card li { font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); padding-left: 16px; position: relative; margin-bottom: 4px; line-height: 1.45; }
+        .stop-card li::before { content: ''; position: absolute; left: 0; top: 6px; width: 7px; height: 7px; background: var(--sun); border: 1.5px solid var(--ink); border-radius: 50%; }
+        .journey-end { padding: 18px 0 0; }
+        .journey-end .stop-card { background: #fff6d9; display: flex; align-items: center; }
+        .journey-end p { font-size: 0.9rem; font-weight: 800; color: var(--ink); margin: 0; }
+        .journey-end p span { color: var(--pop); }
 
         /* Skills */
         .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -399,6 +421,30 @@
         .stagger-3 { transition-delay: 0.3s; }
         .stagger-4 { transition-delay: 0.4s; }
 
+        /* Toy-box color cycling — every icon gets its own toy color */
+        .about-sidebar .info-card:nth-child(1) .info-card-icon { background: var(--toy-green); color: #fff; }
+        .about-sidebar .info-card:nth-child(2) .info-card-icon { background: var(--toy-teal); color: #fff; }
+        .about-sidebar .info-card:nth-child(3) .info-card-icon { background: var(--pop); color: #fff; }
+        .skills-grid .skill-category:nth-child(1) .skill-icon { background: var(--toy-blue); color: #fff; }
+        .skills-grid .skill-category:nth-child(2) .skill-icon { background: var(--toy-green); color: #fff; }
+        .skills-grid .skill-category:nth-child(3) .skill-icon { background: var(--toy-purple); color: #fff; }
+        .projects-grid .project-card:nth-child(1) .metric-icon { background: var(--pop); color: #fff; }
+        .projects-grid .project-card:nth-child(2) .metric-icon { background: var(--toy-green); color: #fff; }
+        .projects-grid .project-card:nth-child(3) .metric-icon { background: var(--toy-purple); color: #fff; }
+        .projects-grid .project-card:nth-child(4) .metric-icon { background: var(--toy-blue); color: #fff; }
+        .project-tags .project-tag:nth-child(2) { background: var(--pop); color: #fff; }
+        .accomplishments-grid .accomplishment-item:nth-child(1) .accomplishment-icon { background: var(--sun); color: var(--ink); }
+        .accomplishments-grid .accomplishment-item:nth-child(2) .accomplishment-icon { background: var(--pop); color: #fff; }
+        .accomplishments-grid .accomplishment-item:nth-child(3) .accomplishment-icon { background: var(--toy-green); color: #fff; }
+        .accomplishments-grid .accomplishment-item:nth-child(4) .accomplishment-icon { background: var(--toy-purple); color: #fff; }
+        .accomplishments-grid .accomplishment-item:nth-child(5) .accomplishment-icon { background: var(--toy-blue); color: #fff; }
+        .accomplishments-grid .accomplishment-item:nth-child(6) .accomplishment-icon { background: var(--toy-teal); color: #fff; }
+        .contact-channels .contact-channel:nth-child(1) .channel-icon { background: var(--pop); color: #fff; }
+        .contact-channels .contact-channel:nth-child(2) .channel-icon { background: var(--toy-green); color: #fff; }
+        .contact-channels .contact-channel:nth-child(3) .channel-icon { background: var(--toy-blue); color: #fff; }
+        .contact-channels .contact-channel:nth-child(4) .channel-icon { background: var(--toy-purple); color: #fff; }
+        .accomplishment-icon, .metric-icon, .info-card-icon, .skill-icon, .channel-icon { box-shadow: 0 3px 0 rgba(28,61,110,0.2), inset 0 -3px 0 rgba(0,0,0,0.12); }
+
         @media (max-width: 1024px) {
             .hero-content { grid-template-columns: 1fr; gap: 40px; }
             .hero-visual { order: -1; }
@@ -407,10 +453,10 @@
             .skills-grid { grid-template-columns: repeat(2, 1fr); }
             .accomplishments-grid { grid-template-columns: repeat(2, 1fr); }
             .experience-section, .gallery-section { margin: 0 16px; padding: 32px 20px; }
-            .timeline-wrapper { padding: 50px 0 24px; }
-            .timeline-items { flex-wrap: wrap; gap: 28px; justify-content: center; }
-            .timeline-item { flex: 0 0 auto; }
-            .timeline-line { display: none; }
+            .journey::before { left: 25px; }
+            .stop-node { width: 52px; height: 52px; }
+            .stop-node svg { width: 22px; height: 22px; }
+            .journey-stop { gap: 16px; }
             .gallery-item { flex: 0 0 260px; }
             .contact-channels { grid-template-columns: 1fr; }
             .sun { width: 84px; height: 84px; right: 5%; top: 84px; }
@@ -428,7 +474,7 @@
             .section-title { font-size: 1.85rem; }
             .skills-grid, .projects-grid { grid-template-columns: 1fr; }
             .accomplishments-grid { grid-template-columns: repeat(2, 1fr); }
-            .timeline-popup { width: 240px; padding: 14px; }
+            .stop-top { flex-direction: column; align-items: flex-start; gap: 6px; }
             .chatbot-container { width: calc(100% - 32px); right: 16px; bottom: 92px; }
             .gallery-item { flex: 0 0 240px; }
             .contact-card { padding: 32px 20px; }
@@ -468,12 +514,12 @@
                     <p class="hero-description">Building intelligent solutions through data engineering, full-stack development, and machine learning. Currently pursuing BS Computer Science at DLSU-Dasmarinas.</p>
                     <div class="hero-stats">
                         <div class="stat"><div class="stat-number">3.93</div><div class="stat-label">GPA / 4.0</div></div>
-                        <div class="stat"><div class="stat-number">Top 2</div><div class="stat-label">General Student Population</div></div>
+                        <div class="stat"><div class="stat-number">Top 1</div><div class="stat-label">Batch Rank</div></div>
                         <div class="stat"><div class="stat-number">98%</div><div class="stat-label">Efficiency Gain</div></div>
                     </div>
                     <div class="hero-cta">
                         <a href="#contact" class="btn btn-primary">Get In Touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-                        <a href="https://drive.google.com/file/d/1Tho6ole7NKkyAWuZZOpDtPvRphsjr3x8/view?usp=sharing" class="btn btn-secondary" target="_blank">Download Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg></a>
+                        <a href="https://drive.google.com/file/d/1Tho6ole7NKkyAWuZZOpDtPvRphsjr3x8/view" class="btn btn-secondary" target="_blank">View Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg></a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -509,7 +555,7 @@
             <div class="section-header"><p class="section-label">Get To Know Me</p><h2 class="section-title">About</h2></div>
             <div class="about-content">
                 <div class="about-text animate-on-scroll">
-                    <p>I'm a Computer Science student specializing in Intelligent Systems at <strong>DLSU-Dasmarinas</strong>, on track to graduate <strong>Summa Cum Laude</strong>, and a recipient of the department's <strong>Best Thesis Award</strong>. My work sits at the intersection of data engineering, workflow automation, and software development.</p>
+                    <p>I'm a Computer Science student specializing in Intelligent Systems at <strong>DLSU-Dasmarinas</strong>, on track to graduate <strong>Summa Cum Laude</strong> as Top 1 in my batch, and a recipient of the department's <strong>Best Thesis Award</strong>. My work sits at the intersection of data engineering, workflow automation, and software development.</p>
                     <p>At <strong>Shopee Philippines</strong> and <strong>Cebu Pacific Air</strong>, I've owned projects end-to-end: architecting vendor accreditation systems, procurement data platforms, and nationwide reconciliation engines — the kind of internal tooling that turns hours of manual work into minutes. Because these systems handle sensitive corporate data, most of them live behind an NDA rather than a public repo.</p>
                     <p>My exchange at <strong>FPT University</strong> in Da Nang, Vietnam sharpened the other half of the job: communicating across cultures and teams, thinking critically, and leading when it counts — recognized with the Global Communicator Award.</p>
                 </div>
@@ -525,34 +571,55 @@
     <section id="experience">
         <div class="container"><div class="section-header"><p class="section-label">Where I've Worked</p><h2 class="section-title">Experience</h2></div></div>
         <div class="experience-section">
-            <div class="timeline-wrapper">
-                <div class="timeline-line"></div>
-                <div class="timeline-items">
-                    <div class="timeline-item">
-                        <div class="timeline-popup"><h4>DLSU-Dasmarinas</h4><p class="popup-role">BS Computer Science</p><p class="popup-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Dasmarinas, Philippines</p><ul><li>GPA: 3.93 / 4.0 — Top 1 in Batch</li><li>Expected to graduate Summa Cum Laude</li><li>Best Thesis Award, CS Department</li></ul></div>
-                        <div class="timeline-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-                        <div class="timeline-label"><span class="timeline-year">2022</span><span class="timeline-company">Started University</span></div>
+            <div class="journey">
+                <div class="journey-stop">
+                    <div class="stop-node node-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+                    <div class="stop-card">
+                        <div class="stop-top"><h4>DLSU-Dasmariñas</h4><span class="stop-date">2022 – 2026</span></div>
+                        <p class="stop-role">BS Computer Science · Intelligent Systems</p>
+                        <p class="stop-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Dasmariñas, Philippines</p>
+                        <ul><li>GPA 3.93 / 4.0 — Top 1 in Batch, expected Summa Cum Laude</li><li>Best Thesis Award, Department of Computer Science</li><li>CSCS Student Government, Circle of Student Assistants, Heraldo Filipino</li></ul>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-popup"><h4>FPT University</h4><p class="popup-role">Exchange Student</p><p class="popup-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Da Nang, Vietnam</p><ul><li>Critical Thinking & Problem Solving</li><li>Leadership & Teamwork</li><li>Cross-cultural collaboration</li></ul></div>
-                        <div class="timeline-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
-                        <div class="timeline-label"><span class="timeline-year">2024</span><span class="timeline-company">FPT Vietnam</span></div>
+                </div>
+                <div class="journey-stop">
+                    <div class="stop-node node-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+                    <div class="stop-card">
+                        <div class="stop-top"><h4>FPT University</h4><span class="stop-date">2024</span></div>
+                        <p class="stop-role">Exchange Student</p>
+                        <p class="stop-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Da Nang, Vietnam</p>
+                        <ul><li>Critical thinking, problem solving, leadership & teamwork</li><li>Global Communicator Awardee</li></ul>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-popup"><h4>KadaKareer VirApp</h4><p class="popup-role">Virtual Apprentice</p><p class="popup-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Manila, Philippines</p><ul><li>UI/UX web development</li><li>Project management experience</li><li>Kollab's Choice Award recipient</li></ul></div>
-                        <div class="timeline-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-                        <div class="timeline-label"><span class="timeline-year">Aug 2024</span><span class="timeline-company">KadaKareer</span></div>
+                </div>
+                <div class="journey-stop">
+                    <div class="stop-node node-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
+                    <div class="stop-card">
+                        <div class="stop-top"><h4>KadaKareer × Move In Colour</h4><span class="stop-date">AUG 2024</span></div>
+                        <p class="stop-role">UI/UX Virtual Apprentice</p>
+                        <p class="stop-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Manila, Philippines</p>
+                        <ul><li>Hands-on UI/UX web development in a fast-paced agile environment</li><li>Remote project management frameworks</li></ul>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-popup"><h4>Cebu Pacific Air</h4><p class="popup-role">Data Engineer & Analyst Intern</p><p class="popup-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Pasay, Philippines</p><ul><li>Built dashboards for 60+ stations</li><li>98% time savings on leaderboards</li><li>Cross-department collaboration</li></ul></div>
-                        <div class="timeline-node"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10" stroke="currentColor"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="bold" fill="currentColor" font-family="Arial">5J</text></svg></div>
-                        <div class="timeline-label"><span class="timeline-year">Jun 2025</span><span class="timeline-company">Cebu Pacific</span></div>
+                </div>
+                <div class="journey-stop">
+                    <div class="stop-node node-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></div>
+                    <div class="stop-card">
+                        <div class="stop-top"><h4>Cebu Pacific Air</h4><span class="stop-date">JUN – AUG 2025</span></div>
+                        <p class="stop-role">Data Engineer & Analyst Intern</p>
+                        <p class="stop-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Pasay, Philippines</p>
+                        <ul><li>Live multi-metric dashboards for 60+ stations nationwide (Power BI + Python)</li><li>Automated leaderboards: 4 hours → under 2 minutes (98%+ efficiency gain)</li><li>Cross-department data validation & analytical support</li></ul>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-popup"><h4>Shopee Philippines</h4><p class="popup-role">Corporate IT Procurement Intern</p><p class="popup-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Mandaluyong, Philippines</p><ul><li>End-to-end workflow automation for procurement & vendor accreditation</li><li>Dashboards & scripts in Python, Apps Script, Sheets</li><li>Consolidated POs, PRs, invoices & delivery receipts</li></ul></div>
-                        <div class="timeline-node"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="4" y="6" width="16" height="14" rx="2" stroke="currentColor"/><path d="M8 6V4a4 4 0 0 1 8 0v2" stroke="currentColor"/><text x="12" y="16" text-anchor="middle" font-size="9" font-weight="bold" fill="currentColor" font-family="Arial">S</text></svg></div>
-                        <div class="timeline-label"><span class="timeline-year">Oct 2025–Mar 2026</span><span class="timeline-company">Shopee</span></div>
+                </div>
+                <div class="journey-stop">
+                    <div class="stop-node node-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div>
+                    <div class="stop-card">
+                        <div class="stop-top"><h4>Shopee Philippines</h4><span class="stop-date">OCT 2025 – MAR 2026</span></div>
+                        <p class="stop-role">Corporate IT Procurement Intern</p>
+                        <p class="stop-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Mandaluyong, Philippines</p>
+                        <ul><li>End-to-end workflow automation for procurement, vendor accreditation & reporting</li><li>Centralized dashboards & scripts in Python, Apps Script & Sheets</li><li>Consolidated POs, PRs, vendor invoices & delivery receipts</li></ul>
                     </div>
+                </div>
+                <div class="journey-stop journey-end">
+                    <div class="stop-node node-star"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div class="stop-card"><p>Next stop: <span>your team?</span> I'm open to full-time roles starting 2026.</p></div>
                 </div>
             </div>
         </div>
