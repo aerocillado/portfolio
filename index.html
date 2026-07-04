@@ -448,6 +448,116 @@
         .contact-channels .contact-channel:nth-child(4) .channel-icon { background: var(--toy-purple); color: #fff; }
         .accomplishment-icon, .metric-icon, .info-card-icon, .skill-icon, .channel-icon { box-shadow: 0 3px 0 rgba(28,61,110,0.2), inset 0 -3px 0 rgba(0,0,0,0.12); }
 
+        /* ============ Kindergarten corkboard kit: pins, tape, chalk ============ */
+        /* Chalk squiggle under section titles */
+        .section-title::after {
+            content: ''; display: block; width: 130px; height: 10px; margin: 6px auto 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 10'%3E%3Cpath d='M3 6 Q 13 2, 23 6 T 43 6 T 63 6 T 83 6 T 103 6 T 126 5' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' opacity='0.9'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+
+        /* Washi tape — translucent, crooked, hand-stuck */
+        .about-text, .stop-card, .project-card, .skill-category { background-image: radial-gradient(rgba(61, 155, 233, 0.10) 1.6px, transparent 1.6px); background-size: 22px 22px; }
+        .about-text { position: relative; outline: 2px dashed rgba(28, 61, 110, 0.16); outline-offset: -10px; }
+        .about-text::before {
+            content: ''; position: absolute; top: -12px; right: 40px; width: 96px; height: 26px;
+            background-color: var(--toy-green);
+            background-image: linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)), repeating-linear-gradient(90deg, transparent 0 8px, rgba(255,255,255,0.18) 8px 16px);
+            border: 2px solid var(--ink); border-radius: 2px;
+            transform: rotate(4deg); opacity: 0.92; box-shadow: 0 2px 0 rgba(28,61,110,0.18);
+        }
+        .skill-category { position: relative; }
+        .skill-category::before {
+            content: ''; position: absolute; top: -12px; left: 26px; width: 78px; height: 24px;
+            background-image: linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)), repeating-linear-gradient(90deg, transparent 0 8px, rgba(255,255,255,0.18) 8px 16px);
+            border: 2px solid var(--ink); border-radius: 2px; opacity: 0.92;
+            box-shadow: 0 2px 0 rgba(28,61,110,0.18);
+        }
+        .skills-grid .skill-category:nth-child(1)::before { background-color: var(--toy-blue); transform: rotate(-4deg); }
+        .skills-grid .skill-category:nth-child(2)::before { background-color: var(--toy-green); transform: rotate(3deg); }
+        .skills-grid .skill-category:nth-child(3)::before { background-color: var(--toy-purple); transform: rotate(-3deg); }
+
+        /* Project cards — tape straddling the top corners */
+        .project-card { position: relative; overflow: visible; }
+        .project-card::before, .project-card::after {
+            content: ''; position: absolute; width: 76px; height: 22px; top: -7px; z-index: 3;
+            background-image: linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)), repeating-linear-gradient(90deg, transparent 0 8px, rgba(255,255,255,0.18) 8px 16px);
+            border: 2px solid var(--ink); border-radius: 2px; opacity: 0.92;
+            box-shadow: 0 2px 0 rgba(28,61,110,0.18);
+        }
+        .project-card::before { left: -20px; transform: rotate(-38deg); }
+        .project-card::after { right: -20px; transform: rotate(38deg); }
+        .projects-grid .project-card:nth-child(1)::before, .projects-grid .project-card:nth-child(1)::after { background-color: var(--pop); }
+        .projects-grid .project-card:nth-child(2)::before, .projects-grid .project-card:nth-child(2)::after { background-color: var(--toy-green); }
+        .projects-grid .project-card:nth-child(3)::before, .projects-grid .project-card:nth-child(3)::after { background-color: var(--toy-purple); }
+        .projects-grid .project-card:nth-child(4)::before, .projects-grid .project-card:nth-child(4)::after { background-color: var(--toy-blue); }
+
+        /* Journey cards — pinned to the sky with pushpins */
+        .stop-card { position: relative; }
+        .stop-card::before {
+            content: ''; position: absolute; top: -9px; left: 50%; margin-left: -9px; z-index: 3;
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 2.5px solid var(--ink);
+            background-image: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.85) 2.5px, transparent 4px);
+            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.18), 0 3px 0 rgba(28,61,110,0.3);
+        }
+        .journey-stop:nth-child(1) .stop-card::before { background-color: var(--toy-green); }
+        .journey-stop:nth-child(2) .stop-card::before { background-color: var(--toy-teal); }
+        .journey-stop:nth-child(3) .stop-card::before { background-color: var(--toy-purple); }
+        .journey-stop:nth-child(4) .stop-card::before { background-color: var(--toy-blue); }
+        .journey-stop:nth-child(5) .stop-card::before { background-color: var(--toy-orange); }
+        .journey-stop.journey-end .stop-card::before { background-color: var(--pop); }
+        .journey-end .stop-card { outline: 2px dashed rgba(28, 61, 110, 0.18); outline-offset: -8px; }
+
+        /* Accomplishment tiles & info cards — pinned notes */
+        .accomplishment-item { position: relative; }
+        .accomplishment-item::after {
+            content: ''; position: absolute; top: -9px; left: 50%; margin-left: -9px; z-index: 3;
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 2.5px solid var(--ink);
+            background-image: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.85) 2.5px, transparent 4px);
+            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.18), 0 3px 0 rgba(28,61,110,0.3);
+        }
+        .accomplishments-grid .accomplishment-item:nth-child(1)::after { background-color: var(--sun); }
+        .accomplishments-grid .accomplishment-item:nth-child(2)::after { background-color: var(--pop); }
+        .accomplishments-grid .accomplishment-item:nth-child(3)::after { background-color: var(--toy-green); }
+        .accomplishments-grid .accomplishment-item:nth-child(4)::after { background-color: var(--toy-purple); }
+        .accomplishments-grid .accomplishment-item:nth-child(5)::after { background-color: var(--toy-blue); }
+        .accomplishments-grid .accomplishment-item:nth-child(6)::after { background-color: var(--toy-teal); }
+        .info-card { position: relative; }
+        .about-sidebar .info-card::after {
+            content: ''; position: absolute; top: -8px; right: 20px; z-index: 3;
+            width: 16px; height: 16px; border-radius: 50%;
+            border: 2.5px solid var(--ink);
+            background-image: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.85) 2px, transparent 3.5px);
+            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.18), 0 3px 0 rgba(28,61,110,0.3);
+        }
+        .about-sidebar .info-card:nth-child(1)::after { background-color: var(--toy-green); }
+        .about-sidebar .info-card:nth-child(2)::after { background-color: var(--toy-teal); }
+        .about-sidebar .info-card:nth-child(3)::after { background-color: var(--pop); }
+        .contact-card { background-image: radial-gradient(rgba(61, 155, 233, 0.10) 1.6px, transparent 1.6px); background-size: 22px 22px; }
+
+        /* ============ Bouncing toy letters ============ */
+        .hero-name .bounce-letter {
+            display: inline-block;
+            animation: letterDrop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            cursor: default;
+        }
+        @keyframes letterDrop {
+            0%   { opacity: 0; transform: translateY(-70px) scale(0.7) rotate(-8deg); }
+            60%  { opacity: 1; transform: translateY(10px) scale(1.08, 0.9) rotate(2deg); }
+            80%  { transform: translateY(-5px) scale(0.98, 1.04); }
+            100% { transform: translateY(0) scale(1) rotate(0deg); }
+        }
+        .hero-name .bounce-letter:hover { animation: letterJump 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes letterJump {
+            30% { transform: translateY(-14px) rotate(-8deg) scale(1.15); }
+            60% { transform: translateY(4px) rotate(4deg) scale(0.95); }
+            100% { transform: translateY(0) rotate(0deg) scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-name .bounce-letter { animation: none !important; }
+        }
+
         @media (max-width: 1024px) {
             .hero-content { grid-template-columns: 1fr; gap: 40px; }
             .hero-visual { order: -1; }
@@ -522,7 +632,7 @@
                     <p class="hero-description">Building intelligent solutions through data engineering, full-stack development, and machine learning. Currently pursuing BS Computer Science at DLSU-Dasmarinas.</p>
                     <div class="hero-stats">
                         <div class="stat"><div class="stat-number">3.93</div><div class="stat-label">GPA / 4.0</div></div>
-                        <div class="stat"><div class="stat-number">Ranked 2nd</div><div class="stat-label">Overall Student Population</div></div>
+                        <div class="stat"><div class="stat-number">Top 2</div><div class="stat-label">General Student Population</div></div>
                         <div class="stat"><div class="stat-number">98%</div><div class="stat-label">Efficiency Gain</div></div>
                     </div>
                     <div class="hero-cta">
@@ -834,6 +944,35 @@
             nav.classList.toggle('scrolled', window.scrollY > 50);
         });
 
+        // Bouncing toy letters — hero name drops in letter by letter
+        const heroName = document.querySelector('.hero-name');
+        if (heroName && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let letterIndex = 0;
+            const wrapLetters = (node) => {
+                [...node.childNodes].forEach(child => {
+                    if (child.nodeType === Node.TEXT_NODE) {
+                        const frag = document.createDocumentFragment();
+                        for (const ch of child.textContent) {
+                            if (ch.trim() === '') {
+                                frag.appendChild(document.createTextNode(ch));
+                            } else {
+                                const s = document.createElement('span');
+                                s.className = 'bounce-letter';
+                                s.textContent = ch;
+                                s.style.animationDelay = (0.2 + letterIndex * 0.05) + 's';
+                                frag.appendChild(s);
+                                letterIndex++;
+                            }
+                        }
+                        child.replaceWith(frag);
+                    } else if (child.nodeType === Node.ELEMENT_NODE) {
+                        wrapLetters(child);
+                    }
+                });
+            };
+            wrapLetters(heroName);
+        }
+
         // Gallery
         const track = document.getElementById('gallery-track');
         const dotsContainer = document.getElementById('gallery-dots');
@@ -869,7 +1008,7 @@
         // Chatbot
         const responses = {
             greet: { p: ['hi','hello','hey','good morning','good afternoon','good evening'], r: "Hello! 👋 I'm Aero's assistant. Ask me about his education, experience, skills, or projects!" },
-            who: { p: ['who is aero','who are you','about aero','tell me about','introduce','who is he'], r: "Aero Cillado is a CS student (Intelligent Systems) at DLSU-Dasmarinas with a 3.93 GPA — Top 1 in his batch and expected to graduate Summa Cum Laude. He's interned at Shopee and Cebu Pacific, specializing in data engineering, workflow automation, and software development." },
+            who: { p: ['who is aero','who are you','about aero','tell me about','introduce','who is he'], r: "Aero Cillado is a CS student (Intelligent Systems) at DLSU-Dasmarinas with a 3.93 GPA and expected to graduate Summa Cum Laude. He's interned at Shopee and Cebu Pacific, specializing in data engineering, workflow automation, and software development." },
             edu: { p: ['education','school','university','college','gpa','grade','degree','dlsu','study','summa','laude'], r: "Aero studies BS Computer Science (Intelligent Systems) at DLSU-Dasmarinas (2022-2026), GPA 3.93/4.0. He's expected to graduate Summa Cum Laude, ranked Top 1 in his batch, and won the department's Best Thesis Award. He also did an exchange at FPT University, Vietnam in 2024." },
             exp: { p: ['experience','work','job','intern','career','where did he work','company'], r: "Aero's experience:\n\n🛒 Shopee (Oct 2025-Mar 2026) - Corporate IT Procurement Intern: workflow automation, dashboards, procurement consolidation\n\n✈️ Cebu Pacific (Jun-Aug 2025) - Data Engineer & Analyst Intern: live dashboards for 60+ stations, 98% efficiency gain\n\n💼 KadaKareer (Aug 2024) - UI/UX virtual apprentice in an agile environment" },
             shopee: { p: ['shopee','vendor','procurement','isp','circuit'], r: "At Shopee, Aero led three projects: a vendor accreditation & NDA system with Gmail-threaded approvals, a procurement data platform with price-variance detection, and an ISP circuit reconciliation engine mapping 1,000+ sites nationwide. All internal systems under NDA." },
